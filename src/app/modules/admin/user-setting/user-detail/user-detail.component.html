@@ -1,0 +1,164 @@
+<ngb-accordion activeIds="user-detail">
+  <ngb-panel id="user-detail">
+    <ng-template ngbPanelHeader>
+      <div class="accordion-button custom-header justify-content-between">
+        <div class="header-title">
+          <!-- User detail: {{ selectedUser?.firstName }}
+          {{ selectedUser?.lastName }} -->
+
+          {{ isEdit ? "Edit" : "Add" }} User
+        </div>
+      </div>
+    </ng-template>
+    <ng-template ngbPanelContent>
+      <form class="body-content" *ngIf="formGroup" [formGroup]="formGroup">
+        <div class="mb-3 row">
+          <label for="username" class="col-sm-4 col-form-label">Username</label>
+          <div class="col-sm-8">
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              formControlName="username"
+              validateControl
+              [disabled]="isViewOnly || isEdit"
+            />
+            <div class="invalid-feedback">Username is required</div>
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="password" class="col-sm-4 col-form-label">Password</label>
+          <div class="col-sm-8">
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              formControlName="password"
+              validateControl
+              [disabled]="isViewOnly"
+            />
+            <div class="invalid-feedback">Password is required</div>
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="firstName" class="col-sm-4 col-form-label"
+            >First Name</label
+          >
+          <div class="col-sm-8">
+            <input
+              type="text"
+              class="form-control"
+              id="firstName"
+              formControlName="firstName"
+              validateControl
+              [disabled]="isViewOnly"
+            />
+            <div class="invalid-feedback">First Name is required</div>
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="lastName" class="col-sm-4 col-form-label"
+            >Last Name</label
+          >
+          <div class="col-sm-8">
+            <input
+              type="text"
+              class="form-control"
+              id="lastName"
+              formControlName="lastName"
+              validateControl
+              [disabled]="isViewOnly"
+            />
+            <div class="invalid-feedback">Last Name is required</div>
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="email" class="col-sm-4 col-form-label">Email</label>
+          <div class="col-sm-8">
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              formControlName="email"
+              validateControl
+              [disabled]="isViewOnly"
+            />
+            <div class="invalid-feedback">
+              <ng-container
+                *ngIf="formGroup.controls['email']?.errors?.['required']"
+              >
+                Email is required
+              </ng-container>
+              <ng-container
+                *ngIf="formGroup.controls['email']?.errors?.['email']"
+              >
+                Invalid email format.
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="address" class="col-sm-4 col-form-label">Address</label>
+          <div class="col-sm-8">
+            <input
+              type="text"
+              class="form-control"
+              id="address"
+              formControlName="address"
+              validateControl
+              [disabled]="isViewOnly"
+            />
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="avatarUrl" class="col-sm-4 col-form-label"
+            >Avatar Url</label
+          >
+          <div class="col-sm-8">
+            <input
+              type="text"
+              class="form-control"
+              id="avatarUrl"
+              formControlName="avatarUrl"
+              validateControl
+              [disabled]="isViewOnly"
+            />
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="role" class="col-sm-4 col-form-label">Role</label>
+          <div class="col-sm-8 form-group">
+            <ng-select
+              labelForId="role"
+              formControlName="role"
+              validateControl
+              [disabled]="isSelectRoleDisabled"
+            >
+              <ng-option *ngFor="let role of listRoleSelections" [value]="role">
+                {{ role }}</ng-option
+              >
+            </ng-select>
+            <div class="invalid-feedback">Role is required</div>
+          </div>
+        </div>
+      </form>
+      <div class="body-actions">
+        <button
+          *ngIf="!isViewOnly"
+          type="button"
+          class="btn btn-sm btn-primary"
+          (click)="onSave()"
+        >
+          Save
+        </button>
+        <button
+          type="button"
+          class="btn btn-sm btn-outline-secondary"
+          (click)="onCancel()"
+        >
+          Cancel
+        </button>
+      </div>
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion>

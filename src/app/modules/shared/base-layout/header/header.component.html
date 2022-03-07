@@ -1,0 +1,56 @@
+<div>
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container-fluid">
+      <button
+        type="button"
+        (click)="sideBarCollapsed = !sideBarCollapsed"
+        class="btn btn-light"
+      >
+        <i class="bi bi-list"></i>
+      </button>
+      <div>Admin Page</div>
+
+      <ul class="navbar-nav ms-auto">
+        <li
+          class="nav-item"
+          ngbDropdown
+          display="dynamic"
+          placement="bottom-end"
+        >
+          <a
+            class="nav-link user-avatar-toggle"
+            ngbDropdownToggle
+            id="navbarDropdown3"
+            role="button"
+          >
+            <img
+              [src]="avatarUrl"
+              title="Avatar"
+              class="usr-avatar"
+              (error)="avatarUrl = defaultAvatar"
+            />
+          </a>
+          <div
+            ngbDropdownMenu
+            aria-labelledby="navbarDropdown3"
+            class="dropdown-menu"
+          >
+            <a ngbDropdownItem class="user-name"
+              >{{ loggedUser?.firstName }} {{ loggedUser?.lastName }}</a
+            >
+            <a
+              ngbDropdownItem
+              [routerLink]="'/profile'"
+              (click)="$event.preventDefault()"
+              >Profile</a
+            >
+            <a ngbDropdownItem [routerLink]="'/login'" (click)="logOut()"
+              >Logout</a
+            >
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <app-nav-bar [(is-nav-collapsed)]="sideBarCollapsed"></app-nav-bar>
+</div>

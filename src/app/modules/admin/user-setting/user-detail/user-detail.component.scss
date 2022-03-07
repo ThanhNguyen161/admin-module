@@ -1,0 +1,24 @@
+ng-select.ng-invalid.ng-touched::ng-deep .ng-select-container {
+    border-color: #dc3545;
+}
+ng-select.ng-select-disabled::ng-deep .ng-select-container {
+    background-color: #e9ecef;
+}
+
+.body-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    button {
+        margin-left: 12px;
+    }
+}
+
+.accordion-button {
+    color: black;
+    background-color: #f0f0f033;
+    &::after {
+        content: none;
+    }
+}

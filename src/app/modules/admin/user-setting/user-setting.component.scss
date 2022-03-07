@@ -1,0 +1,41 @@
+.table-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .table-title {
+    font-weight: 600px;
+    font-size: 18px;
+  }
+
+  .table-actions {
+    button {
+      margin-left: 8px;
+    }
+  }
+}
+
+.accordion-button {
+    color: black;
+    background-color: #f0f0f033;
+    &::after {
+        content: none;
+    }
+}
+
+.table-action-col {
+  width: 100px;
+  text-align: center;
+  .btn-action {
+    background-color: transparent;
+    border: none;
+    padding: 0px 8px;
+
+    &:first-child {
+      padding-left: 0px;
+    }
+    &:last-child {
+      padding-right: 0px;
+    }
+  }
+}

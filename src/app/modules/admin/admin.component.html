@@ -1,0 +1,21 @@
+<div class="mb-4 row col-sm-12 col-xs-10 col-md-8 col-lg-6">
+  <div class="col-sm-8">
+    <ng-select
+      [items]="addminSettings"
+      labelForId="adminModule"
+      placeholder="Admin Setting"
+      (change)="selectedModule = $event"
+    >
+    </ng-select>
+
+    <div *ngIf="!selectedModule" class="text-primary" role="alert">
+      <em>
+        Please Select Setting module!
+      </em>
+    </div>
+  </div>
+</div>
+<div class="row" [ngSwitch]="selectedModule">
+  <app-user-setting *ngSwitchCase="'User Setting'"> </app-user-setting>
+  <app-role-setting *ngSwitchCase="'Role Setting'"> </app-role-setting>
+</div>

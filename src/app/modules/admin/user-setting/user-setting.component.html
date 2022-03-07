@@ -1,0 +1,89 @@
+<div class="mb-4">
+  <ngb-accordion activeIds="user-module">
+    <ngb-panel id="user-module">
+      <ng-template ngbPanelHeader>
+        <div class="accordion-button custom-header justify-content-between">
+          <div class="header-title">User setting</div>
+
+          <div class="header-actions">
+            <button
+              type="button"
+              class="btn btn-sm btn-outline-primary"
+              (click)="onAddNew()"
+            >
+              Add
+              <i class="bi bi-plus"></i>
+            </button>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Address</th>
+              <th scope="col">Role</th>
+              <th class="table-action-col" scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container
+              *ngIf="dataListing && dataListing.length; else no_records"
+            >
+              <tr *ngFor="let item of dataListing; let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ item.firstName }}</td>
+                <td>{{ item.lastName }}</td>
+                <td>{{ item.email }}</td>
+                <td>{{ item.address }}</td>
+                <td>{{ item.role }}</td>
+                <td class="table-action-col">
+                  <button
+                    class="btn-action text-success"
+                    (click)="onEditItem(item)"
+                    *ngIf="isShowAction('edit', item)"
+                  >
+                    <i class="bi bi-pencil-square"></i>
+                  </button>
+                  <button
+                    class="btn-action text-info"
+                    (click)="onViewItem(item)"
+                    *ngIf="isShowAction('view', item)"
+                  >
+                    <i class="bi bi-eye-fill"></i>
+                  </button>
+                  <button
+                    class="btn-action text-danger"
+                    (click)="onDeleteItem(item)"
+                    *ngIf="isShowAction('delete', item)"
+                  >
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>
+</div>
+
+<ng-template #no_records>
+  <tr>
+    <th colspan="7">There is no records found.</th>
+  </tr>
+</ng-template>
+
+<div>
+  <app-user-detail #userDetail
+    *ngIf="selectedUser"
+    [selectedUser]="selectedUser"
+    [isViewOnly]="isViewOnly"
+    (afterSave)="afterSave($event)"
+  ></app-user-detail>
+</div>

@@ -1,0 +1,9 @@
+<div
+  id="mySidenav"
+  class="sidenav"
+  #sideNav
+  [@collapsedExpanded]="collapsed ? 'collapsed' : 'expanded'"
+>
+  <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+  <a *ngFor="let item of menuList" [routerLink]="item.url" (click)="closeNav()" [roleDisplay]="item.allowRoles" [isAllowAll]="item.isAllowAll" >{{ item.name }}</a>
+</div>

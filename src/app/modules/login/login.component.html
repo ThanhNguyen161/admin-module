@@ -1,0 +1,54 @@
+<div class="app-login-page">
+  <div class="back-ground">
+    <div class="circle xxlarge shade1"></div>
+    <div class="circle xlarge shade2"></div>
+    <div class="circle large shade3"></div>
+    <div class="circle mediun shade4"></div>
+    <div class="circle small shade5"></div>
+  </div>
+
+  <div class="app-login">
+    <form
+      class="login-form col-lg-4 col-md-6 col-sm-8 col-10"
+      [formGroup]="formGroup"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="mb-3">
+        <label for="formUsername" class="form-label">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          id="formUsername"
+          placeholder="Username"
+          formControlName="username"
+          validateControl
+        />
+        <div class="invalid-feedback">Username is required</div>
+      </div>
+      <div class="mb-3">
+        <label for="formPassword" class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="formPassword"
+          placeholder="Password"
+          formControlName="password"
+          validateControl
+        />
+        <div class="invalid-feedback">Password is required</div>
+      </div>
+      <div class="form-actions">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          data-toggle="button"
+          aria-pressed="false"
+          autocomplete="off"
+          [disabled]="formGroup.invalid"
+        >
+          Sign-in
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
